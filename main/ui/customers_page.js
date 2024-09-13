@@ -1,4 +1,4 @@
-const { By, until } = require("selenium-webdriver");
+const { By, until, Key } = require("selenium-webdriver");
 const DriverFactory = require("../../core/ui/driverFactory");
 const configuration =require("../../configuration.json");
 const RandomValues = require("../../main/utils");
@@ -187,19 +187,19 @@ class CustomersPage{
                 await dobTextField.sendKeys(dataTable.rowsHash().FechaDeNacimiento);
             } else {
                 await calendarButton.click();
-                await DriverFactory.myDriver.sleep(500);
-                if (!dataTable.rowsHash().FechaDeNacimiento.includes('FirstSelectableDayOfCalendarPopup')){
+                await DriverFactory.myDriver.sleep(1000);
+                if (dataTable.rowsHash().FechaDeNacimiento.includes('FirstSelectableDayOfCalendarPopup')){
                     const allYearsOfCalendarDropdown = await DriverFactory.myDriver.wait(until.elementsLocated(this.allYearsOfCalendarDropdown));
                     await allYearsOfCalendarDropdown[0].click();
                     await DriverFactory.myDriver.sleep(500);
                     const allMonthsOfCalendarDropdown = await DriverFactory.myDriver.wait(until.elementsLocated(this.allMonthsOfCalendarDropdown));
                     await allMonthsOfCalendarDropdown[0].click()
-                    await DriverFactory.myDriver.sleep(1000);
+                    await DriverFactory.myDriver.sleep(500);
                     const allSelectableDaysOfCalendarDropdown = await DriverFactory.myDriver.wait(until.elementsLocated(this.allSelectableDaysOfCalendarDropdown));
                     await allSelectableDaysOfCalendarDropdown[0].click()
                     await DriverFactory.myDriver.sleep(500);
                 }
-                if (!dataTable.rowsHash().FechaDeNacimiento.includes('FirstUnselectableDayOfCalendarPopup')){
+                if (dataTable.rowsHash().FechaDeNacimiento.includes('FirstUnselectableDayOfCalendarPopup')){
                     const allYearsOfCalendarDropdown = await DriverFactory.myDriver.wait(until.elementsLocated(this.allYearsOfCalendarDropdown));
                     await allYearsOfCalendarDropdown[0].click();
                     await DriverFactory.myDriver.sleep(500);
@@ -210,7 +210,7 @@ class CustomersPage{
                     await allUnselectableDaysOfCalendarDropdown[0].click()
                     await DriverFactory.myDriver.sleep(500);
                 }
-                if (!dataTable.rowsHash().FechaDeNacimiento.includes('LastSelectableDayOfCalendarPopup')){
+                if (dataTable.rowsHash().FechaDeNacimiento.includes('LastSelectableDayOfCalendarPopup')){
                     const allYearsOfCalendarDropdown = await DriverFactory.myDriver.wait(until.elementsLocated(this.allYearsOfCalendarDropdown));
                     await allYearsOfCalendarDropdown[allYearsOfCalendarDropdown.length-1].click();
                     await DriverFactory.myDriver.sleep(500);
@@ -221,7 +221,7 @@ class CustomersPage{
                     await allSelectableDaysOfCalendarDropdown[allSelectableDaysOfCalendarDropdown.length-1].click()
                     await DriverFactory.myDriver.sleep(500);
                 }
-                if (!dataTable.rowsHash().FechaDeNacimiento.includes('LastUnselectableDayOfCalendarPopup')){
+                if (dataTable.rowsHash().FechaDeNacimiento.includes('LastUnselectableDayOfCalendarPopup')){
                     const allYearsOfCalendarDropdown = await DriverFactory.myDriver.wait(until.elementsLocated(this.allYearsOfCalendarDropdown));
                     await allYearsOfCalendarDropdown[allYearsOfCalendarDropdown.length-1].click();
                     await DriverFactory.myDriver.sleep(500);
@@ -249,6 +249,7 @@ class CustomersPage{
 
         const saveCustomerButton = await DriverFactory.myDriver.wait(until.elementLocated(this.saveCustomerButton));
         await DriverFactory.myDriver.sleep(500);
+        await saveCustomerButton.sendKeys(Key.SHIFT);
         await saveCustomerButton.click();
         await DriverFactory.myDriver.sleep(2000);
         let spinner = await DriverFactory.myDriver.wait(until.elementLocated(this.spinner));

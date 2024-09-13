@@ -1,7 +1,7 @@
-@ui
+@ui @clientes
 Feature: Eliminar Cliente
 
-@login @Funcionalidad
+@iniciarSesion @Funcionalidad
 Scenario: Verificar que un cliente existente es eliminado desde la tabla de clientes
     Given el usuario Administrador añade un nuevo cliente por con informacion por defecto
         And el usuario Administrador navega a la pagina Clientes
