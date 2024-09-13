@@ -21,6 +21,30 @@ module.exports = class CommonFlows{
         return true;
     }
 
+    static async createCustomer() {
+        console.log("Hook: Starting to create new Customer via API");
+        try {
+            const response = await RequestFetch.request(`${environment.prod.apiUrl}default/V1/customers/search?searchCriteria[filterGroups][0][filters][0][conditionType]=eq&searchCriteria[filterGroups][0][filters][0][field]=email&searchCriteria[filterGroups][0][filters][0][value]=${uniqueValue}`, "GET")
+            const data = await response.json();
+            await RequestFetch.request(`${environment.prod.apiUrl}default/V1/customers/${data["items"][0]["id"]}`, "DEL");
+            return undefined
+        } catch{}
+    }
+
+    static async deleteCustomer(uniqueValue) {
+        console.log("Hook: Starting to delete the Customer with unique value: "+uniqueValue);
+        try {
+            if (uniqueValue !== undefined) {
+                const response = await RequestFetch.request(`${environment.prod.apiUrl}default/V1/customers/search?searchCriteria[filterGroups][0][filters][0][conditionType]=eq&searchCriteria[filterGroups][0][filters][0][field]=email&searchCriteria[filterGroups][0][filters][0][value]=${uniqueValue}`, "GET")
+                const data = await response.json();
+                await RequestFetch.request(`${environment.prod.apiUrl}default/V1/customers/${data["items"][0]["id"]}`, "DEL");
+                return undefined
+            } else {
+                console.log("No Customer to delete.");
+            }
+        } catch{}
+    }
+
     static async deleteProduct(uniqueValue) {
         console.log("Hook: Starting to delete product with unique value: "+uniqueValue);
         try{

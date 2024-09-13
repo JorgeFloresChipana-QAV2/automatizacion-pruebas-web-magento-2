@@ -24,6 +24,10 @@ Before( { tags: "@login" }, async function(scenario){
     }
 });
 
+After({ tags: "@eliminarCliente" }, async function(){
+    this.uniqueEMailValue = await CommonFlows.deleteCustomer(this.uniqueEMailValue);
+});
+
 After({ tags: "@eliminarProducto" }, async function(){
     this.uniqueProductValue = await CommonFlows.deleteProduct(this.uniqueProductValue);
 });
