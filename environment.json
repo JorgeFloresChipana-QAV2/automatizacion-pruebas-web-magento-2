@@ -1,0 +1,16 @@
+{
+    "prod":{
+        "uiUrl":"https://magento2-demo.magebit.com/admin/",
+        "userAdmin":{
+            "username": "magebit",
+            "password": "Demo123"
+        },
+        "userMember01":{
+            "name": "ffakemail16s",
+            "username": "fFakemail16s@Fakemail14.com",
+            "password": ""
+        },
+        "apiUrl": "https://magento2-demo.magebit.com/rest/",
+        "apiKey": "psz0zk8oqeetwpgt5i0x91a1jprqfgch"
+    }
+}
