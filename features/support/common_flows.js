@@ -1,7 +1,9 @@
 const environment = require("../../environment.json");
 const DriverFactory = require("../../core/ui/driverFactory");
+const RandomValues = require("../../main/utils");
 const LoginPage = require("../../main/ui/login_page");
 const { until } = require("selenium-webdriver");
+const RequestFetch = require("../../core/api/request_fetch");
 
 module.exports = class CommonFlows{
 
@@ -17,5 +19,20 @@ module.exports = class CommonFlows{
         await loginButton.click();
         await DriverFactory.myDriver.sleep(1000);
         return true;
+    }
+
+    static async deleteProduct(uniqueValue) {
+        console.log("Hook: Starting to delete product with unique value: "+uniqueValue);
+        try{
+            if (uniqueValue !== undefined) {
+                const response = await RequestFetch.request(`${environment.prod.apiUrl}default/V1/products?searchCriteria[filterGroups][0][filters][0][conditionType]=eq&searchCriteria[filterGroups][0][filters][0][field]=name&searchCriteria[filterGroups][0][filters][0][value]=${uniqueValue}`, "GET")
+                const data = await response.json();
+                await RequestFetch.request(`${environment.prod.apiUrl}default/V1/products/${data["items"][0]["sku"]}`, "DEL");
+                console.log("Product deleted");
+                return undefined
+            } else {
+                console.log("No Product to delete.");
+            }
+        } catch {}
     }
 }
