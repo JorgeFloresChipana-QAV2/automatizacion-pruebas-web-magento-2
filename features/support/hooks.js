@@ -23,3 +23,11 @@ Before( { tags: "@login" }, async function(scenario){
         loginHook = await CommonFlows.login(scenario);
     }
 });
+
+After({ tags: "@eliminarProducto" }, async function(){
+    this.uniqueProductValue = await CommonFlows.deleteProduct(this.uniqueProductValue);
+});
+
+AfterAll({ tags: "@ui" },async function(){
+    await DriverFactory.closeDriver();
+});
