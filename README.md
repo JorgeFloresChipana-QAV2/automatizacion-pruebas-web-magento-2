@@ -1,4 +1,4 @@
-# Proyecto de Automatización - Pivotal Tracker
+# Proyecto de Automatización de pruebas Web - Magento 2
 
 ## Descripción del Proyecto
 
