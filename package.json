@@ -1,0 +1,19 @@
+{
+  "name": "automatizacion-pruebas-web-magento-2",
+  "version": "1.0.0",
+  "description": "Este proyecto tiene como objetivo automatizar las pruebas web para la aplicación Magento 2 Demo Store, utilizando herramientas como Selenium WebDriver, Cucumber, y Node.js. La automatización abarca diferentes funcionalidades de la aplicación, como la creación, actualización y eliminación de clientes y productos.\r ## Estructura del Proyecto",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@cucumber/cucumber": "^10.8.0",
+    "chromedriver": "^127.0.1",
+    "chai": "^4.4.1",
+    "log4js": "^6.9.1",
+    "selenium-webdriver": "^4.23.0"
+  }
+}
