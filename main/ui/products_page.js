@@ -231,7 +231,7 @@ class ProductsPage{
         }catch{}
         
 
-        return newUniqueProductValue;
+        return newUniqueProductValue.substring(0,255);
     }
 
     async clickOnEditLink(uniqueValue){
@@ -263,8 +263,11 @@ class ProductsPage{
     async searchProductByKeyword(uniqueValue, checkRowsFound=true){
         const searchByKeywordTextField = await DriverFactory.myDriver.wait(until.elementLocated(this.searchByKeywordTextField));
         await searchByKeywordTextField.clear();
+        await DriverFactory.myDriver.sleep(1000);
         await searchByKeywordTextField.sendKeys(uniqueValue);
+        await DriverFactory.myDriver.sleep(500);
         const searchByKeywordButton = await DriverFactory.myDriver.wait(until.elementLocated(this.searchByKeywordButton));
+        await searchByKeywordButton.sendKeys(Key.SHIFT);
         await searchByKeywordButton.click();
         await DriverFactory.myDriver.sleep(2000);
         if (checkRowsFound){

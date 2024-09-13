@@ -1,7 +1,7 @@
-@ui
+@ui @productos
 Feature: Eliminar Producto
 
-@login @Funcionalidad
+@iniciarSesion @Funcionalidad
 Scenario: Verificar que el producto es eliminado cuando se confirma la ventana emergente “Eliminar elementos”
     Given el usuario Administrador navega a la pagina Productos
         And el usuario Administrador añade un nuevo producto por con informacion por defecto

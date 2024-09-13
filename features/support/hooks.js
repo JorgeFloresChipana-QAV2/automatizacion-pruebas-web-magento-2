@@ -17,7 +17,7 @@ BeforeAll( { tags: "@ui" }, async function(){
     await this.driver.manage().window().setRect(configuration.browser.resolution);
 });
 
-Before( { tags: "@login" }, async function(scenario){
+Before( { tags: "@iniciarSesion" }, async function(scenario){
     console.log("TEST SCENARIO: " + scenario.pickle.name.toLocaleUpperCase());
     if ((loginHook === undefined) || (loginHook === false)){
         loginHook = await CommonFlows.login(scenario);
